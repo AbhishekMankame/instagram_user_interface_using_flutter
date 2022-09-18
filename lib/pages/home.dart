@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone1/util/bubble_stories.dart';
+import 'package:instagram_clone1/util/user_posts.dart';
 
 class UserHome extends StatelessWidget {
-  final List people = []
+  final List people = ['Aditya', 'LK', 'Harshith', 'Suraj', 'Aneesh'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,28 +34,23 @@ class UserHome extends StatelessWidget {
           // stories
           Container(
             height: 130,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                BubbleStories(
-                  text: 'Aditya',
-                ),
-                BubbleStories(
-                  text: 'LK',
-                ),
-                BubbleStories(
-                  text: 'Harshith',
-                ),
-                BubbleStories(
-                  text: 'Suraj',
-                ),
-                BubbleStories(
-                  text: 'Kaushal',
-                ),
-              ],
-            ),
-          )
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: people.length,
+                itemBuilder: (context, index) {
+                  return BubbleStories(text: people[index]);
+                }),
+          ),
           // posts
+          Expanded(
+            child: ListView.builder(
+                itemCount: people.length,
+                itemBuilder: (context, index) {
+                  return UserPosts(
+                    name: people[index],
+                  );
+                }),
+          )
         ],
       ),
     );
